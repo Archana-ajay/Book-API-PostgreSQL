@@ -7,6 +7,7 @@ const fileUpload = require('express-fileupload');
 const { logger } = require('./src/utils');
 const routes = require('./src/routes');
 const { errorHandler } = require('./src/helpers');
+const path = require('path');
 
 const app = express();
 
@@ -34,7 +35,7 @@ app.use(
 );
 
 app.use('/api/v1', routes);
-app.use('/api/v1/uploads', express.static('uploads'));
+app.use('/api/v1/uploads',express.static(path.join(__dirname, '/src/uploads')));
 
 app.use(errorHandler);
 
